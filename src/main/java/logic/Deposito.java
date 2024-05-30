@@ -36,6 +36,42 @@ public class Deposito<T> {
 
         return al.remove(0);
 
-    }   
+    }
+
+    /**
+     * Retorna un elemento sin borrarlo del deposito
+     * @param i int indice del elemento a retornar
+     * @return Elemento de indice i en el deposito
+     */
+
+    public T verElemento(int i) {
+        if (al.isEmpty()) {
+            return null;
+
+        }
+
+        return al.get(i);
+
+    }
+    
+    /**
+     * Retorna si el Deposito esta vacio o no
+     * @return Boolean
+     */
+
+    public boolean isEmpty() {
+        return al.isEmpty();
+
+    }
+
+    /**
+     * Retorna tamaño  del deposito
+     * @return int Tamaño del deposito
+     */
+
+    public int getSize() {
+        return al.size();
+
+    }
 
 }

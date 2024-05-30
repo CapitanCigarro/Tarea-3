@@ -10,6 +10,7 @@ public class Expendedor {
     private Deposito<Dulce> snickers;
     private Deposito<Dulce> super8;
     private Deposito<Moneda> monVu;
+    private Deposito<Moneda> depMon;
     private Producto producto;
 
     /**Crea un expendedor con i productos de cada tipo.
@@ -22,6 +23,7 @@ public class Expendedor {
         snickers = new Deposito<Dulce>();
         super8 = new Deposito<Dulce>();
         monVu = new Deposito<Moneda>();
+        depMon = new Deposito<Moneda>();
 
         for (int j = 0; j < i; j++) {
             coca.addElemento(new CocaCola(j));
@@ -32,26 +34,40 @@ public class Expendedor {
 
         }
     }
-    /**Intenta comprar el producto especificado con la moneda especificada, y añade monedas de 100 equivalentes al vuelto a monVu.
-     *
-     * @param m Moneda con la que se va a intentar comprar.
+    /**Intenta comprar el producto especificado con la moneda especificada, y añade 
+     * monedas de 100 y las sobrantes del deposito de monedas equivalentes al 
+     * vuelto a monVu.
      * @param seleccion Identificador del producto que se quiere comprar.
+     * @param iter variable auxiliar para obtener elemento de indice iter
+     * @param valortotal Valor total de las monedas dentro del deposito de monedas
      * @return Objeto producto que fue comprado.
      *
      * @throws PagoIncorrectoException Cuando la moneda == null.
      * @throws PagoInsuficienteException Cuando el valor de la moneda es menor al del producto a comprar.
      * @throws NoHayProductoException Cuando el deposito del producto a comprar esta vacio.
      */
-    public void comprarProducto(Moneda m, ListProd seleccion) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
+    public void comprarProducto(ListProd seleccion) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         Producto b = null;
-        if (m == null) {
-            throw new PagoIncorrectoException("Moneda null");
+        if (depMon.isEmpty()) {
+            throw new PagoIncorrectoException("No hay monedas");
 
         }
 
-        int iterations = m.getValor() / 100; //Cantidad maxima de monedas de 100 para dar de vuelto.
+        int valortotal = 0;
+        int iter = 0;
+        while (depMon.isEmpty() == false) {
+            valortotal += depMon.verElemento(iter).getValor();
+            if(valortotal >= seleccion.getPrecio()) {
+                break;
 
-        if(m.getValor() >= seleccion.getPrecio()) {
+            }
+
+            iter +=1;
+
+        }
+
+        if(valortotal >= seleccion.getPrecio()) {
+            valortotal -= seleccion.getPrecio();
             switch (seleccion) {
                 case COCACOLA:
                     b = coca.getElemento();
@@ -85,15 +101,29 @@ public class Expendedor {
 
         }
 
-        if (b != null) {
-            iterations -= seleccion.getPrecio() / 100;
+        for (int i = 0; i < depMon.getSize(); i++) {
+            Moneda m = depMon.getElemento();
+            if (m.getValor() >= valortotal) {
+                for (int j = 0; j < (m.getValor() - valortotal) / 100; j++) {
+                    monVu.addElemento(new Moneda100());
+
+                }
+
+                break;
+
+            } else {
+                valortotal -= m.getValor();
+
+            }
+
+            
+        }
+
+        while (depMon.isEmpty() == false) {
+            monVu.addElemento(depMon.getElemento());
 
         }
 
-        for (int j = 0; j < iterations; j++) {
-            monVu.addElemento(new Moneda100());
-
-        }
 
 
         this.producto = b;
@@ -113,8 +143,22 @@ public class Expendedor {
 
     }
 
+    /**
+     * @return Retorna producto comprado
+     */
+
     public Producto getProducto() {
         return this.producto;
+
+    }
+
+    /**
+     * Funcion para añadir moneda a deposito de monedas
+     * @param m Moneda a añadir
+     */
+
+    public void addMoneda(Moneda m) {
+        this.depMon.addElemento(m);
 
     }
     
