@@ -7,6 +7,8 @@ package main.java.logic;
 public abstract class Producto {
     private int serie;
 
+    private int  x,y;
+
     /**Crea un producto con el numero de serie especificado.
      * @param serie Numero de serie de producto
     */
@@ -21,6 +23,21 @@ public abstract class Producto {
     public int getSerie() {
         return serie;
 
+    }
+
+    public void setX(int num){
+        this.x = num;
+    }
+    public void setY(int num){
+        this.y = num;
+    }
+
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
     }
 
     /** Obtiene el sabor del producto
