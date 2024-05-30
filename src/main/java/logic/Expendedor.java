@@ -10,6 +10,7 @@ public class Expendedor {
     private Deposito<Dulce> snickers;
     private Deposito<Dulce> super8;
     private Deposito<Moneda> monVu;
+    private Producto producto;
 
     /**Crea un expendedor con i productos de cada tipo.
      * @param i Numero de productos de cada tipo que contendra el expendedor.
@@ -41,7 +42,7 @@ public class Expendedor {
      * @throws PagoInsuficienteException Cuando el valor de la moneda es menor al del producto a comprar.
      * @throws NoHayProductoException Cuando el deposito del producto a comprar esta vacio.
      */
-    public Producto comprarProducto(Moneda m, ListProd seleccion) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
+    public void comprarProducto(Moneda m, ListProd seleccion) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         Producto b = null;
         if (m == null) {
             throw new PagoIncorrectoException("Moneda null");
@@ -95,7 +96,7 @@ public class Expendedor {
         }
 
 
-        return b;
+        this.producto = b;
 
     }
 
@@ -109,6 +110,11 @@ public class Expendedor {
         }
 
         return null;
+
+    }
+
+    public Producto getProducto() {
+        return this.producto;
 
     }
     

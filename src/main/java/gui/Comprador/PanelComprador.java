@@ -1,4 +1,4 @@
-package main.java.gui;
+package main.java.gui.Comprador;
 
 import main.java.logic.Comprador;
 
@@ -20,3 +20,4 @@ public class PanelComprador extends JPanel {
         super.paintComponent(g);
     }
 }
+

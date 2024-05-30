@@ -9,7 +9,9 @@ public class Comprador {
     private int vuelto = 0;
 
     public Comprador(Moneda m, ListProd cualProducto, Expendedor exp) throws Exception {
-        Producto b = exp.comprarProducto(m, cualProducto);
+        exp.comprarProducto(m, cualProducto);
+
+        Producto b = exp.getProducto();
         
         if (b != null) {
             sonido = b.consumir();

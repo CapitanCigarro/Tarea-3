@@ -12,4 +12,11 @@ public class PanelExpendedor extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
     }
+    
+    @Override
+    public void setLayout(LayoutManager mgr) {
+        super.setLayout(mgr);
+        
+
+    }
 }

@@ -12,6 +12,7 @@ public class MyFrame extends JFrame {
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200,800);
+        this.setLocationRelativeTo(null);
         this.setTitle("Maquina Expendedora");
         this.setVisible(true);
 

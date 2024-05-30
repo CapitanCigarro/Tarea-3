@@ -2,6 +2,9 @@ package main.java.gui;
 
 
 import javax.swing.*;
+
+import main.java.gui.Comprador.PanelComprador;
+
 import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
