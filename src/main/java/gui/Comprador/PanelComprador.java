@@ -22,17 +22,19 @@ public class PanelComprador extends JPanel {
 
         this.setBounds(600,0,600,800);
 
-        iniciarComponentes();
+        iniciarLista();
 
     }
 
-    public void iniciarComponentes() {
-        
+    public void iniciarLista() { 
         this.listaElecciones = new JComboBox<String>(this.elecciones);
         this.listaElecciones.setBounds(0, 0, 100, 100); // TODO
         this.add(this.listaElecciones);
 
+    }
 
+    public void iniciarBotones() {
+        
 
     }
 
