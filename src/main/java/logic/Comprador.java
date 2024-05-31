@@ -7,29 +7,68 @@ package main.java.logic;
 public class Comprador {
     private String sonido = null;
     private int vuelto = 0;
+    private Producto b;
+    private ListProd cualProducto;
+    
 
-    public Comprador(Moneda m, ListProd cualProducto, Expendedor exp) throws Exception {
-        exp.comprarProducto(m, cualProducto);
+    
 
-        Producto b = exp.getProducto();
-        
-        if (b != null) {
-            sonido = b.consumir();
+    public Comprador() { }
+
+    /**
+     * Funcion para comprar producto seleccionado
+     * @param exp Expendedor que se le comprara
+     * @throws Exception Posibles exceptions que tire 
+     */
+
+    public void comprar(Expendedor exp) throws Exception {
+        exp.comprarProducto(cualProducto);
+
+    }
+
+    /**
+     * Funcion que retira producto del expendedor una vez comprado
+     * @param exp Expendedor del que se retira producto comprado
+     */
+
+    public void retirarProducto(Expendedor exp) {
+        this.b = exp.getProducto();
+        if(b != null) {
+            this.sonido = this.b.consumir();
 
         }
         
-        while(true) {
-            Moneda vu = exp.getVuelto();
-            if (vu == null) {
+
+    }
+
+    /**
+     * Funcion que te devuelve el vuelto y lo cuenta, objetos Moneda se iran eliminando
+     * @param exp Expendedor a retirar vuelto
+     */
+
+    public void getVuelto(Expendedor exp) {
+        while (true) {
+            Moneda m = exp.getVuelto();
+            if (m == null){
                 break;
 
             }
 
-            vuelto += vu.getValor();
+            this.vuelto += m.getValor();
 
         }
 
     }
+
+    public void setVuelto (int i) {
+        this.vuelto = i;
+
+    }
+
+    /**
+     * Funcion que devuelve cuanto vuelto tiene comprador
+     * @return Vuelto
+     */
 
     public int cuantoVuelto() {
         return vuelto;

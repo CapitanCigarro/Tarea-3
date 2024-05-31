@@ -131,7 +131,7 @@ public class Expendedor {
     }
 
     /**Extrae una moneda de monVu
-     * @return Una Moneda100 de monVu, o null si monVu esta vacio.
+     * @return Una Moneda de monVu, o null si monVu esta vacio.
      */
     public Moneda getVuelto() {
         if (monVu != null) {
