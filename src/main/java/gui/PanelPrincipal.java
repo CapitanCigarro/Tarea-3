@@ -14,9 +14,9 @@ public class PanelPrincipal extends JPanel {
     private Expendedor expendedor;
 
     public PanelPrincipal(){
-        exp = new PanelExpendedor(expendedor);
-        com = new PanelComprador(expendedor);
         expendedor = new Expendedor(5);
+        exp = new PanelExpendedor(expendedor);
+        com = new PanelComprador(expendedor, exp);
 
         this.setBackground(Color.white);
         this.setBounds(0,0,1200,800);
@@ -32,4 +32,5 @@ public class PanelPrincipal extends JPanel {
         com.paintComponent(g);
         exp.paintComponent(g);
     }
+
 }

@@ -1,5 +1,6 @@
 package main.java.gui.Comprador;
 
+import main.java.gui.PanelExpendedor;
 import main.java.logic.*;
 
 import javax.swing.*;
@@ -19,11 +20,15 @@ public class PanelComprador extends JPanel {
     private JButton moneda100, moneda500, moneda1000;
     private JButton comprar, retirarProducto, retirarVuelto;
     private Expendedor exp;
+    private PanelExpendedor pexp;
+    private JLabel mensaje;
 
 
-    public PanelComprador(Expendedor exp){
+    public PanelComprador(Expendedor exp, PanelExpendedor pexp){
         this.exp = exp;
+        this.pexp = pexp;
         this.setBackground(Color.blue);
+        setLayout(null);
 
         this.setBounds(600,0,600,800);
 
@@ -35,7 +40,7 @@ public class PanelComprador extends JPanel {
 
     public void iniciarLista() { 
         this.listaElecciones = new JComboBox<String>(this.elecciones);
-        this.listaElecciones.setBounds(0, 0, 100, 100); // TODO
+        this.listaElecciones.setBounds(100, 186, 140, 20); // TODO
         this.add(this.listaElecciones);
 
     }
@@ -46,7 +51,17 @@ public class PanelComprador extends JPanel {
         this.retirarVuelto = new JButton();
 
         this.comprar.setText("Comprar");
-        this.retirarProducto.setText("Retirar Producto");
+        
+        ActionListener comp = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+
+            }
+        };
+
+        this.comprar.addActionListener(comp);
+
         this.retirarVuelto.setText("Retirar vuelto");
 
 
@@ -59,7 +74,7 @@ public class PanelComprador extends JPanel {
     }
 
     public void iniciarTextos() {
-        
+        this.mensaje = new JLabel("Compra un producto");
 
     }
 
@@ -72,15 +87,16 @@ public class PanelComprador extends JPanel {
         this.moneda500.setText("Moneda 500");
         this.moneda1000.setText("Moneda 1000");
 
-        this.moneda100.setBounds(100, 100, 50, 50);
-        this.moneda500.setBounds(100, 200, 50, 50);
-        this.moneda1000.setBounds(100, 300, 50, 50);
+        this.moneda100.setBounds(450, 100, 130, 30);
+        this.moneda500.setBounds(450, 180, 130, 30);
+        this.moneda1000.setBounds(450, 260, 130, 30);
 
         ActionListener m100 = new ActionListener() {
             @Override 
 
             public  void  actionPerformed(ActionEvent ae) {
                 addMoneda(new Moneda100());
+                pexp.actualizar();
 
             }
 
@@ -91,6 +107,7 @@ public class PanelComprador extends JPanel {
 
             public  void  actionPerformed(ActionEvent ae) {
                 addMoneda(new Moneda500());
+                pexp.actualizar();
 
             }
 
@@ -101,6 +118,7 @@ public class PanelComprador extends JPanel {
 
             public  void  actionPerformed(ActionEvent ae) {
                 addMoneda(new Moneda1000());
+                pexp.actualizar();
 
             }
 
@@ -121,5 +139,6 @@ public class PanelComprador extends JPanel {
         super.paintComponent(g);
 
     }
+
 }
 

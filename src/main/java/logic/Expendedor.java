@@ -161,5 +161,48 @@ public class Expendedor {
         this.depMon.addElemento(m);
 
     }
+
+    public Deposito<Moneda> getDepMon() {
+        return this.depMon;
+
+    }
+
+    public void rellenar() {
+        boolean coca, sprite, fanta, snickers, super8;
+        coca = this.coca.isEmpty();
+        sprite = this.sprite.isEmpty();
+        fanta = this.fanta.isEmpty();
+        snickers = this.snickers.isEmpty();
+        super8 = this.super8.isEmpty();
+
+        for(int i = 0; i < 5; i++) {
+            if(coca) {
+                this.coca.addElemento(new CocaCola(i));
+
+            }
+
+            if(sprite) {
+                this.sprite.addElemento(new Sprite(i));
+
+            }
+
+            if(fanta) {
+                this.fanta.addElemento(new Fanta(i));
+
+            }
+
+            if(snickers) {
+                this.snickers.addElemento(new Snickers(i));
+
+            }
+
+            if(super8) {
+                this.super8.addElemento(new Super8(i));
+
+            }
+
+        }
+
+    }
     
 }
