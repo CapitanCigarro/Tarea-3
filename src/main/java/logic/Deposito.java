@@ -35,9 +35,11 @@ public class Deposito<T> {
         }
 
         return al.remove(0);
-
     }
 
+    public ArrayList getLista(){
+        return al;
+    }
     /**
      * Retorna un elemento sin borrarlo del deposito
      * @param i int indice del elemento a retornar
