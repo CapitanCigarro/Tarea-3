@@ -83,14 +83,15 @@ public class PanelExpendedor extends JPanel {
      */
 
     public void actualizar() {
-        int dinero = 0;
-        Deposito<Moneda> depMon = exp.getDepMon();
-        for (int i = 0; i < depMon.getSize(); i++) {
-            dinero += depMon.verElemento(i).getValor();
+        this.dinero.setText("Dinero = " + exp.getValorTotal());
 
-        }
+    }
 
-        this.dinero.setText("Dinero = " + dinero);
+    public void comprarProducto(int i) {}
+        
+
+    public void getVuelto() {
+
 
     }
 

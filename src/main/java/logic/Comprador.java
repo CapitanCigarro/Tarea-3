@@ -21,8 +21,13 @@ public class Comprador {
      * @throws Exception Posibles exceptions que tire 
      */
 
-    public void comprar(Expendedor exp) throws Exception {
+    public void comprar(Expendedor exp) throws NoHayProductoException, PagoIncorrectoException, PagoInsuficienteException {
         exp.comprarProducto(cualProducto);
+
+    }
+
+    public void setProducto(ListProd cualProducto) {
+        this.cualProducto = cualProducto;
 
     }
 

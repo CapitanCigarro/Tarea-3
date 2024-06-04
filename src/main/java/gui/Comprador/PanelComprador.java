@@ -21,10 +21,12 @@ public class PanelComprador extends JPanel {
     private JButton comprar, retirarProducto, retirarVuelto;
     private Expendedor exp;
     private PanelExpendedor pexp;
+    private Comprador comprador;
     private JLabel mensaje;
 
 
     public PanelComprador(Expendedor exp, PanelExpendedor pexp){
+        this.comprador = new Comprador();
         this.exp = exp;
         this.pexp = pexp;
         this.setBackground(Color.blue);
@@ -35,20 +37,22 @@ public class PanelComprador extends JPanel {
         iniciarLista();
         iniciarBotonesMoneda();
         iniciarBotonesAccion();
+        iniciarTextos();
 
         //TEMP
-        ActionListener del_listener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                exp.getCoca().getLista().removeLast();
-                getParent().repaint();
-            }
-        };
-        JButton del = new JButton();
-        del.setBounds(100,400,50,50);
-        del.setText("DEL");
-        del.addActionListener(del_listener);
-        this.add(del);
+        // ActionListener del_listener = new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
+        //         exp.getCoca().getLista().removeLast();
+        //         getParent().repaint();
+        //     }
+        // };
+        // JButton del = new JButton();
+        // del.setBounds(100,400,100,50);
+        // del.setText("DEL");
+        // del.addActionListener(del_listener);
+        // this.add(del);
+        
     }
 
     public void iniciarLista() { 
@@ -64,20 +68,73 @@ public class PanelComprador extends JPanel {
         this.retirarVuelto = new JButton();
 
         this.comprar.setText("Comprar");
+        this.comprar.setBounds(100, 400, 200, 20);
         
         ActionListener comp = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                try {
+                    switch (listaElecciones.getSelectedIndex()) {
+                        case 0:
+                            comprador.setProducto(ListProd.COCACOLA);
+                            break;
+                        
+                        case 1:
+                            comprador.setProducto(ListProd.FANTA);
+                            break;
 
+                        case 2:
+                            comprador.setProducto(ListProd.SPRITE);
+                            break;
+
+                        case 3:
+                            comprador.setProducto(ListProd.SNICKERS);
+                            break;
+                        
+                        case 4:
+                            comprador.setProducto(ListProd.SUPER8);
+                            break;
+                    
+                    }
+
+                    comprador.comprar(exp);
+                    pexp.actualizar();
+                    pexp.cambiarMensaje("Compra exitosa");
+                    mensaje.setText("Deberia retirar mi compra");
+
+                } catch (NoHayProductoException e) {
+                    mensaje.setText("Se agoto el producto");
+                    pexp.cambiarMensaje("Producto agotado");
+                } catch (PagoIncorrectoException e) {
+                    mensaje.setText("No hay monedas");
+                    pexp.cambiarMensaje("No hay monedas");
+
+                } catch (PagoInsuficienteException e) {
+                    mensaje.setText("Deberia añadir mas monedas");
+                    pexp.cambiarMensaje("Pago insuficiente");
+
+                }
 
             }
+
         };
 
         this.comprar.addActionListener(comp);
 
+        ActionListener retVuel = new ActionListener() {
+            @Override
+            public  void  actionPerformed(ActionEvent ae) {
+                
+
+            }
+        };
+
         this.retirarVuelto.setText("Retirar vuelto");
+        this.retirarVuelto.setBounds(100, 460,  200, 20);
 
 
+        this.add(comprar);
+        this.add(retirarVuelto);
 
     }
 
@@ -88,6 +145,10 @@ public class PanelComprador extends JPanel {
 
     public void iniciarTextos() {
         this.mensaje = new JLabel("Compra un producto");
+        this.mensaje.setBounds(200, 600, 200, 20);
+        this.mensaje.setBackground(Color.black);
+        this.mensaje.setForeground(Color.white);
+        this.add(mensaje);
 
     }
 

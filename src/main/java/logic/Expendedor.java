@@ -1,5 +1,7 @@
 package main.java.logic;
 
+import java.awt.List;
+
 /**Representa una maquina expendedora
  * @author Nícholas García
  */
@@ -16,6 +18,7 @@ public class Expendedor {
     private Deposito<Moneda> monVu;
     private Deposito<Moneda> depMon;
     private Producto producto;
+    private int valortotal = 0;
 
     /**Crea un expendedor con i productos de cada tipo.
      * @param i Numero de productos de cada tipo que contendra el expendedor.
@@ -52,45 +55,32 @@ public class Expendedor {
      */
     public void comprarProducto(ListProd seleccion) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         Producto b = null;
-        if (depMon.isEmpty()) {
+        if (this.depMon.isEmpty()) {
             throw new PagoIncorrectoException("No hay monedas");
 
         }
 
-        int valortotal = 0;
-        int iter = 0;
-        while (depMon.isEmpty() == false) {
-            valortotal += depMon.verElemento(iter).getValor();
-            if(valortotal >= seleccion.getPrecio()) {
-                break;
-
-            }
-
-            iter +=1;
-
-        }
-
-        if(valortotal >= seleccion.getPrecio()) {
-            valortotal -= seleccion.getPrecio();
+        if(this.valortotal >= seleccion.getPrecio()) {
+           this.valortotal -= seleccion.getPrecio();
             switch (seleccion) {
                 case COCACOLA:
-                    b = coca.getElemento();
+                    b = this.coca.getElemento();
                     break;
                 
                 case SPRITE:
-                    b = sprite.getElemento();
+                    b = this.sprite.getElemento();
                     break;
 
                 case FANTA:
-                    b = fanta.getElemento();
+                    b = this.fanta.getElemento();
                     break;
 
                 case SNICKERS:
-                    b = snickers.getElemento();
+                    b = this.snickers.getElemento();
                     break;
                 
                 case SUPER8:
-                    b = super8.getElemento();
+                    b = this.super8.getElemento();
                     break;
 
             }
@@ -105,18 +95,31 @@ public class Expendedor {
 
         }
 
-        for (int i = 0; i < depMon.getSize(); i++) {
-            Moneda m = depMon.getElemento();
-            if (m.getValor() >= valortotal) {
-                for (int j = 0; j < (m.getValor() - valortotal) / 100; j++) {
-                    monVu.addElemento(new Moneda100());
+        this.producto = b;
+
+    }
+
+    public int getValorTotal() {
+        return this.valortotal;
+
+    }
+
+    /**Extrae una moneda de monVu
+     * @return Una Moneda de monVu, o null si monVu esta vacio.
+     */
+    public Moneda getVuelto() {
+        for (int i = 0; i < this.depMon.getSize(); i++) {
+            Moneda m = this.depMon.getElemento();
+            if (m.getValor() >= this.valortotal) {
+                for (int j = 0; j < (m.getValor() - this.valortotal) / 100; j++) {
+                    this.monVu.addElemento(new Moneda100());
 
                 }
 
                 break;
 
             } else {
-                valortotal -= m.getValor();
+                this.valortotal -= m.getValor();
 
             }
 
@@ -127,17 +130,6 @@ public class Expendedor {
             monVu.addElemento(depMon.getElemento());
 
         }
-
-
-
-        this.producto = b;
-
-    }
-
-    /**Extrae una moneda de monVu
-     * @return Una Moneda de monVu, o null si monVu esta vacio.
-     */
-    public Moneda getVuelto() {
         if (monVu != null) {
             return monVu.getElemento();
 
@@ -163,6 +155,7 @@ public class Expendedor {
 
     public void addMoneda(Moneda m) {
         this.depMon.addElemento(m);
+        this.valortotal += m.getValor();
 
     }
 
