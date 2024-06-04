@@ -12,11 +12,14 @@ public class PanelExpendedor extends JPanel {
     public PanelExpendedor(Expendedor exp){
         this.setBounds(0,0,600,800);
         this.setBackground(Color.black);
+        this.setLayout(null);
         this.exp = exp;
+        this.add(new PanelDeposito(exp.getCoca())); ///TODO
         
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+
     }
     
     /**

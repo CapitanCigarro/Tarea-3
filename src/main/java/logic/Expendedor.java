@@ -5,6 +5,10 @@ package main.java.logic;
  */
 public class Expendedor {
     private Deposito<Bebida> coca;
+    public Deposito getCoca(){
+        return coca; ////TODO getters depositos
+    }
+
     private Deposito<Bebida> sprite;
     private Deposito<Bebida> fanta;
     private Deposito<Dulce> snickers;

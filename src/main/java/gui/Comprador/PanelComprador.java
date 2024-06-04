@@ -31,6 +31,19 @@ public class PanelComprador extends JPanel {
         iniciarBotonesMoneda();
         iniciarBotonesAccion();
 
+        //TEMP
+        ActionListener del_listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exp.getCoca().getLista().removeLast();
+                getParent().repaint();
+            }
+        };
+        JButton del = new JButton();
+        del.setBounds(100,400,50,50);
+        del.setText("DEL");
+        del.addActionListener(del_listener);
+        this.add(del);
     }
 
     public void iniciarLista() { 
@@ -81,6 +94,7 @@ public class PanelComprador extends JPanel {
 
             public  void  actionPerformed(ActionEvent ae) {
                 addMoneda(new Moneda100());
+
 
             }
 
