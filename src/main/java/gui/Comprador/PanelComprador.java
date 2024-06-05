@@ -39,7 +39,7 @@ public class PanelComprador extends JPanel {
         iniciarBotonesAccion();
         iniciarTextos();
 
-        //TEMP
+        //TEMP TODO delete this
         // ActionListener del_listener = new ActionListener() {
         //     @Override
         //     public void actionPerformed(ActionEvent e) {
@@ -57,7 +57,7 @@ public class PanelComprador extends JPanel {
 
     public void iniciarLista() { 
         this.listaElecciones = new JComboBox<String>(this.elecciones);
-        this.listaElecciones.setBounds(100, 186, 140, 20); // TODO
+        this.listaElecciones.setBounds(100, 186, 140, 20);
         this.add(this.listaElecciones);
 
     }
@@ -124,14 +124,17 @@ public class PanelComprador extends JPanel {
         ActionListener retVuel = new ActionListener() {
             @Override
             public  void  actionPerformed(ActionEvent ae) {
-                
+                comprador.retirarVuelto(exp);
+                mensaje.setText("Vuelto obtenido = " + comprador.getVueltoTotal());
+                pexp.cambiarMensaje("Vuelto = " + comprador.getVueltoTotal());
+                pexp.actualizar();
 
             }
         };
 
         this.retirarVuelto.setText("Retirar vuelto");
         this.retirarVuelto.setBounds(100, 460,  200, 20);
-
+        this.retirarVuelto.addActionListener(retVuel);
 
         this.add(comprar);
         this.add(retirarVuelto);

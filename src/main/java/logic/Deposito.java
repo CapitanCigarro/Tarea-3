@@ -37,6 +37,11 @@ public class Deposito<T> {
         return al.remove(0);
     }
 
+    public void quitarElemento(int i) {
+        al.remove(i);
+
+    }
+
     public ArrayList getLista(){
         return al;
     }

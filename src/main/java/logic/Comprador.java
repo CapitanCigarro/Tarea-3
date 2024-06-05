@@ -6,7 +6,7 @@ package main.java.logic;
  */
 public class Comprador {
     private String sonido = null;
-    private int vuelto = 0;
+    private int vuelto;
     private Producto b;
     private ListProd cualProducto;
     
@@ -47,11 +47,13 @@ public class Comprador {
     }
 
     /**
-     * Funcion que te devuelve el vuelto y lo cuenta, objetos Moneda se iran eliminando
+     * Funcion que te devuelve el vuelto y lo cuenta, objetos Moneda se iran eliminando,
+     * despues de cada compra se reinicia el vuelto
      * @param exp Expendedor a retirar vuelto
      */
 
-    public void getVuelto(Expendedor exp) {
+    public void retirarVuelto(Expendedor exp) {
+        this.vuelto = 0;
         while (true) {
             Moneda m = exp.getVuelto();
             if (m == null){
@@ -62,6 +64,11 @@ public class Comprador {
             this.vuelto += m.getValor();
 
         }
+
+    }
+
+    public int getVueltoTotal() {
+        return this.vuelto;
 
     }
 

@@ -115,12 +115,5 @@ public class PanelExpendedor extends JPanel {
         this.add(panelSnickers);
         this.add(panelSuper8);
     }
-    public void comprarProducto(int i) {}
         
-
-    public void getVuelto() {
-
-
-    }
-
 }

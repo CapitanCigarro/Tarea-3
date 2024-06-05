@@ -105,14 +105,14 @@ public class Expendedor {
      */
     public Moneda getVuelto() {
         for (int i = 0; i < this.depMon.getSize(); i++) {
-            Moneda m = this.depMon.getElemento();
+            Moneda m = this.depMon.verElemento(i);
             if (m.getValor() >= this.valortotal) {
-                for (int j = 0; j < (m.getValor() - this.valortotal) / 100; j++) {
+                depMon.quitarElemento(i);
+                for (int j = 0; j < this.valortotal / 100; j++) {
                     this.monVu.addElemento(new Moneda100());
 
                 }
 
-                break;
 
             } else {
                 this.valortotal -= m.getValor();
@@ -126,6 +126,9 @@ public class Expendedor {
             monVu.addElemento(depMon.getElemento());
 
         }
+
+        this.valortotal = 0;
+
         if (monVu != null) {
             return monVu.getElemento();
 
