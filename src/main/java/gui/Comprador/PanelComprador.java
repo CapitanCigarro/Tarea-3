@@ -23,6 +23,7 @@ public class PanelComprador extends JPanel {
     private PanelExpendedor pexp;
     private Comprador comprador;
     private JLabel mensaje;
+    private boolean condiciones;
 
 
     public PanelComprador(Expendedor exp, PanelExpendedor pexp){
@@ -101,6 +102,10 @@ public class PanelComprador extends JPanel {
                     pexp.actualizar();
                     pexp.cambiarMensaje("Compra exitosa");
                     mensaje.setText("Deberia retirar mi compra");
+                    retirarProducto.setVisible(true);
+                    retirarVuelto.setVisible(true);
+                    condiciones = false;
+                    comprar.setVisible(condiciones);
 
                 } catch (NoHayProductoException e) {
                     mensaje.setText("Se agoto el producto");
@@ -129,14 +134,53 @@ public class PanelComprador extends JPanel {
                 pexp.cambiarMensaje("Vuelto = " + comprador.getVueltoTotal());
                 pexp.actualizar();
 
+                retirarVuelto.setVisible(false);
+
+                if(condiciones) {
+                    comprar.setVisible(true);
+
+                } else {
+                    condiciones = true;
+
+                }
+
             }
         };
 
         this.retirarVuelto.setText("Retirar vuelto");
         this.retirarVuelto.setBounds(100, 460,  200, 20);
         this.retirarVuelto.addActionListener(retVuel);
+        this.retirarVuelto.setVisible(false);
+
+        this.retirarProducto.setVisible(false);
+        this.retirarProducto.setText("Retirar producto"); // TODO posiblemente cambiar por una imagen del producto
+        this.retirarProducto.setBounds(100, 520, 200, 20);
+
+        ActionListener retProd = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                comprador.retirarProducto(exp);
+                mensaje.setText("Obtuviste " + comprador.queConsumiste());
+                pexp.cambiarMensaje("Producto retirado");
+
+                retirarProducto.setVisible(false);
+
+                if(condiciones) {
+                    comprar.setVisible(true);
+
+                } else {
+                    condiciones =true;
+
+                }
+
+            }
+
+        };
+
+        this.retirarProducto.addActionListener(retProd);
 
         this.add(comprar);
+        this.add(retirarProducto);
         this.add(retirarVuelto);
 
     }

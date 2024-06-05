@@ -91,5 +91,9 @@ public class Comprador {
         return sonido;
 
     }
+    
+    public Producto getProducto() {
+        return this.b;
 
+    }
 }

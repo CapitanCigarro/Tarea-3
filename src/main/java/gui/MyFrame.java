@@ -2,10 +2,6 @@ package main.java.gui;
 
 import javax.swing.*;
 
-import main.java.logic.Expendedor;
-
-import java.awt.*;
-
 public class MyFrame extends JFrame {
     PanelPrincipal principal;
     public MyFrame(){

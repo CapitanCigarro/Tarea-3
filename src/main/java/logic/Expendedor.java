@@ -1,7 +1,5 @@
 package main.java.logic;
 
-import java.awt.List;
-
 /**Representa una maquina expendedora
  * @author Nícholas García
  */
