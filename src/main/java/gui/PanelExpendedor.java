@@ -57,7 +57,7 @@ public class PanelExpendedor extends JPanel {
         this.mensaje.setForeground(Color.WHITE);
         this.dinero = new JLabel();
         this.dinero.setText("Dinero = 0");
-        this.dinero.setForeground(Color.WHITE);
+        this.dinero.setForeground(Color.BLACK);
         this.dinero.setBounds(100, 0, 100, 100);
         this.add(dinero);
         this.add(mensaje);
