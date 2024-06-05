@@ -26,6 +26,12 @@ public class PanelComprador extends JPanel {
     private boolean condiciones;
 
 
+    /**
+     * Metodo constructor de clase, inicializa todo
+     * @param exp Expendedor que se usara para "comprar"
+     * @param pexp Referencia a panel expendedor para actualizar este
+     */
+
     public PanelComprador(Expendedor exp, PanelExpendedor pexp){
         this.comprador = new Comprador();
         this.exp = exp;
@@ -56,12 +62,20 @@ public class PanelComprador extends JPanel {
         
     }
 
+    /**
+     * Metodo que inicializa lista de eleccion de productos
+     */
+
     public void iniciarLista() { 
         this.listaElecciones = new JComboBox<String>(this.elecciones);
         this.listaElecciones.setBounds(100, 186, 140, 20);
         this.add(this.listaElecciones);
 
     }
+
+    /**
+     * Metodo que inicializa botones para comprar, retirar vuelto y producto
+     */
 
     public void iniciarBotonesAccion() {
         this.comprar = new JButton();
@@ -185,10 +199,19 @@ public class PanelComprador extends JPanel {
 
     }
 
+    /**
+     * Metodo para añadir monedas a expendedor
+     * @param m Moneda a ser añadida
+     */
+
     public void addMoneda(Moneda m) {
         this.exp.addMoneda(m);
 
     }
+
+    /**
+     * Metodo para inicializar barra de texto
+     */
 
     public void iniciarTextos() {
         this.mensaje = new JLabel("Compra un producto");
@@ -198,6 +221,10 @@ public class PanelComprador extends JPanel {
         this.add(mensaje);
 
     }
+
+    /**
+     * Metodo que inicializa botones para añadir monedas
+     */
 
     public void  iniciarBotonesMoneda() {
         this.moneda100 = new JButton();
