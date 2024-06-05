@@ -89,13 +89,71 @@ public class Expendedor {
             }
 
             this.valortotal -= seleccion.getPrecio();
-            
+
         } else {
             throw new PagoInsuficienteException("Pago Insuficiente");
 
         }
 
         this.producto = b;
+
+        int auxPrecio = seleccion.getPrecio();
+        Deposito<Moneda> tempDepMon = new Deposito<Moneda>();
+        for(Object mon : this.depMon.getLista()) {
+            if(auxPrecio == 0) {
+                break;
+
+            }
+            Moneda m = (Moneda)mon;
+            if(m.getValor() <= auxPrecio) {
+                auxPrecio -= m.getValor();
+                this.depMonExp.addElemento(m);
+
+            } else {
+                int diff = (m.getValor() - auxPrecio) / 100;
+                while(true) {
+                    if(diff == 0) {break;}
+                    if(diff >=5) {
+                        tempDepMon.addElemento(new Moneda500());
+                        diff -= 5;
+
+                    }else {
+                        tempDepMon.addElemento(new Moneda100());
+                        --diff;
+                    }
+                }
+                int aux500 = auxPrecio / 500;
+                if (aux500 > 0) {
+                    for (int i = 0; i < aux500; i++) {
+                        auxPrecio -= 500;
+                        this.depMonExp.addElemento(new Moneda500());
+
+                    }
+
+                int aux100 = auxPrecio / 100;
+                if(aux100 > 0) {
+                    for(int i = 0; i < aux100; i++) {
+                        auxPrecio -= 100;
+                        this.depMonExp.addElemento(new Moneda100());
+
+                    }
+
+                }
+
+                }
+
+            }
+
+        }
+
+        depMon.clear();
+        
+        for(Object mon : tempDepMon.getLista()) {
+            depMon.addElemento((Moneda)mon);
+
+        }
+
+        tempDepMon.clear();
 
     }
 
@@ -108,27 +166,6 @@ public class Expendedor {
      * @return Una Moneda de monVu, o null si monVu esta vacio.
      */
     public Moneda getVuelto() {
-        for (int i = 0; i < this.depMon.getSize(); i++) {
-            Moneda m = this.depMon.verElemento(i);
-            if (m.getValor() >= this.valortotal) {
-                for(int k = 0; k < (m.getValor() - this.valortotal) / 100; k++) {
-                    depMonExp.addElemento(new Moneda100());
-
-                }
-                depMon.quitarElemento(i);
-                for (int j = 0; j < this.valortotal / 100; j++) {
-                    this.monVu.addElemento(new Moneda100());
-
-                }
-
-
-            } else {
-                this.valortotal -= m.getValor();
-
-            }
-
-            
-        }
 
         while (depMon.isEmpty() == false) {
             monVu.addElemento(depMon.getElemento());

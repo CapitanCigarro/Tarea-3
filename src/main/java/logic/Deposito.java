@@ -86,4 +86,9 @@ public class Deposito<T> {
 
     }
 
+    public void clear() {
+        al.clear();
+
+    }
+
 }

@@ -3,7 +3,6 @@ package main.java.gui;
 
 import javax.swing.*;
 
-import main.java.gui.Comprador.PanelComprador;
 import main.java.logic.*;
 
 import java.awt.*;

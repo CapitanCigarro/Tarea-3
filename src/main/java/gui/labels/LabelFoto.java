@@ -9,9 +9,9 @@ import java.awt.*;
 public class LabelFoto extends JLabel {
 
     int serie;
-    Producto prod;
+    Object prod;
     Deposito depo;
-    public LabelFoto(Producto p, Deposito argDepo, String fileName){
+    public LabelFoto(Object p, Deposito argDepo, String fileName){
         super();
         this.prod = p;
         this.depo = argDepo;

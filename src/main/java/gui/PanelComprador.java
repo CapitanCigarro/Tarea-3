@@ -1,6 +1,5 @@
-package main.java.gui.Comprador;
+package main.java.gui;
 
-import main.java.gui.PanelExpendedor;
 import main.java.logic.*;
 
 import javax.swing.*;
@@ -23,7 +22,6 @@ public class PanelComprador extends JPanel {
     private PanelExpendedor pexp;
     private Comprador comprador;
     private JLabel mensaje;
-    private boolean condiciones;
 
 
     /**
@@ -118,8 +116,7 @@ public class PanelComprador extends JPanel {
                     mensaje.setText("Deberia retirar mi compra");
                     retirarProducto.setVisible(true);
                     retirarVuelto.setVisible(true);
-                    condiciones = false;
-                    comprar.setVisible(condiciones);
+                    comprar.setVisible(false);
 
                 } catch (NoHayProductoException e) {
                     mensaje.setText("Se agoto el producto");
@@ -150,14 +147,6 @@ public class PanelComprador extends JPanel {
 
                 retirarVuelto.setVisible(false);
 
-                if(condiciones) {
-                    comprar.setVisible(true);
-
-                } else {
-                    condiciones = true;
-
-                }
-
             }
         };
 
@@ -179,13 +168,7 @@ public class PanelComprador extends JPanel {
 
                 retirarProducto.setVisible(false);
 
-                if(condiciones) {
-                    comprar.setVisible(true);
-
-                } else {
-                    condiciones =true;
-
-                }
+                comprar.setVisible(true);
 
             }
 
@@ -232,8 +215,11 @@ public class PanelComprador extends JPanel {
         this.moneda1000 = new JButton();
 
         this.moneda100.setText("Moneda 100");
+        this.moneda100.setBackground(Color.GREEN);
         this.moneda500.setText("Moneda 500");
+        this.moneda500.setBackground(Color.MAGENTA);
         this.moneda1000.setText("Moneda 1000");
+        this.moneda1000.setBackground(Color.CYAN);
 
         this.moneda100.setBounds(450, 100, 130, 30);
         this.moneda500.setBounds(450, 180, 130, 30);
