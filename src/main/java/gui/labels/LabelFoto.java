@@ -6,16 +6,16 @@ import main.java.logic.Producto;
 import javax.swing.*;
 import java.awt.*;
 
-public class LabelTest extends JLabel {
+public class LabelFoto extends JLabel {
 
     int serie;
     Producto prod;
     Deposito depo;
-    public LabelTest(Producto p,Deposito argDepo){
+    public LabelFoto(Producto p, Deposito argDepo, String fileName){
         super();
         this.prod = p;
         this.depo = argDepo;
-        this.setText("C");
+        this.setIcon(new ImageIcon(fileName));
     }
 
     @Override

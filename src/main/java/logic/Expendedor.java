@@ -7,10 +7,6 @@ import java.awt.List;
  */
 public class Expendedor {
     private Deposito<Bebida> coca;
-    public Deposito getCoca(){
-        return coca; ////TODO getters depositos
-    }
-
     private Deposito<Bebida> sprite;
     private Deposito<Bebida> fanta;
     private Deposito<Dulce> snickers;
@@ -201,5 +197,23 @@ public class Expendedor {
         }
 
     }
-    
+    public Deposito<Bebida> getCoca() {
+        return coca;
+    }
+
+    public Deposito<Bebida> getSprite() {
+        return sprite;
+    }
+
+    public Deposito<Bebida> getFanta() {
+        return fanta;
+    }
+
+    public Deposito<Dulce> getSnickers() {
+        return snickers;
+    }
+
+    public Deposito<Dulce> getSuper8() {
+        return super8;
+    }
 }

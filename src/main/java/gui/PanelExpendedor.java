@@ -12,6 +12,12 @@ public class PanelExpendedor extends JPanel {
     private JLabel mensaje;
     private JButton expendedor;
 
+    private PanelDeposito panelCoca;
+    private PanelDeposito panelFanta;
+    private PanelDeposito panelSprite;
+    private PanelDeposito panelSnickers;
+    private PanelDeposito panelSuper8;
+
     public PanelExpendedor(Expendedor exp){
         this.setBounds(0,0,600,800);
         this.setBackground(Color.black);
@@ -20,7 +26,7 @@ public class PanelExpendedor extends JPanel {
         setLayout(null);
         iniciarTextos();
         iniciarBotones();
-        this.add(new PanelDeposito(exp.getCoca())); ///TODO
+        iniciarPaneles(); ///TODO
 
     }
     public void paintComponent(Graphics g){
@@ -87,6 +93,28 @@ public class PanelExpendedor extends JPanel {
 
     }
 
+    public void iniciarPaneles(){
+        panelCoca = new PanelDeposito(exp.getCoca(),"src\\main\\resources\\CocaCola1.png");
+        panelCoca.setBounds(50,20,500,60);
+
+        panelSprite = new PanelDeposito(exp.getSprite(),"src\\main\\resources\\Sprite1.png");
+        panelSprite.setBounds(50,80,500,60);
+
+        panelFanta = new PanelDeposito(exp.getFanta(),"src\\main\\resources\\Fanta1.png");
+        panelFanta.setBounds(50,140,500,60);
+
+        panelSnickers = new PanelDeposito(exp.getSnickers(),"src\\main\\resources\\Snickers1.png");
+        panelSnickers.setBounds(50,200,500,60);
+
+        panelSuper8 = new PanelDeposito(exp.getSuper8(),"src\\main\\resources\\Super81.png");
+        panelSuper8.setBounds(50,260,500,60);
+
+        this.add(panelCoca);
+        this.add(panelSprite);
+        this.add(panelFanta);
+        this.add(panelSnickers);
+        this.add(panelSuper8);
+    }
     public void comprarProducto(int i) {}
         
 
