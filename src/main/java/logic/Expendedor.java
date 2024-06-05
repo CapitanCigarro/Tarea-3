@@ -99,6 +99,7 @@ public class Expendedor {
 
         int auxPrecio = seleccion.getPrecio();
         Deposito<Moneda> tempDepMon = new Deposito<Moneda>();
+        boolean aux = true;
         for(Object mon : this.depMon.getLista()) {
             if(auxPrecio == 0) {
                 break;
@@ -110,7 +111,15 @@ public class Expendedor {
                 this.depMonExp.addElemento(m);
 
             } else {
-                int diff = (m.getValor() - auxPrecio) / 100;
+                int diff;
+                if(aux) {
+                    diff = (m.getValor() - auxPrecio) / 100; 
+                    aux = false;
+                } else {
+                    diff = m.getValor() / 100;
+
+                }
+                
                 while(true) {
                     if(diff == 0) {break;}
                     if(diff >=5) {

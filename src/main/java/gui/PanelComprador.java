@@ -22,6 +22,7 @@ public class PanelComprador extends JPanel {
     private PanelExpendedor pexp;
     private Comprador comprador;
     private JLabel mensaje;
+    private boolean condicion;
 
 
     /**
@@ -117,6 +118,10 @@ public class PanelComprador extends JPanel {
                     retirarProducto.setVisible(true);
                     retirarVuelto.setVisible(true);
                     comprar.setVisible(false);
+                    condicion = false;
+                    moneda100.setVisible(condicion);
+                    moneda500.setVisible(condicion);
+                    moneda1000.setVisible(condicion);
 
                 } catch (NoHayProductoException e) {
                     mensaje.setText("Se agoto el producto");
@@ -144,6 +149,15 @@ public class PanelComprador extends JPanel {
                 mensaje.setText("Vuelto obtenido = " + comprador.getVueltoTotal());
                 pexp.cambiarMensaje("Vuelto = " + comprador.getVueltoTotal());
                 pexp.actualizar();
+                if(condicion) {
+                    comprar.setVisible(true);
+                    moneda100.setVisible(condicion);
+                    moneda500.setVisible(condicion);
+                    moneda1000.setVisible(condicion);
+                } else {
+                    condicion = true;
+
+                }
 
                 retirarVuelto.setVisible(false);
 
@@ -168,7 +182,16 @@ public class PanelComprador extends JPanel {
 
                 retirarProducto.setVisible(false);
 
-                comprar.setVisible(true);
+                if(condicion) {
+                    comprar.setVisible(true);
+                    moneda100.setVisible(condicion);
+                    moneda500.setVisible(condicion);
+                    moneda1000.setVisible(condicion);
+
+                } else {
+                    condicion = true;
+
+                }
 
             }
 
