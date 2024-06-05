@@ -37,8 +37,13 @@ public class Deposito<T> {
         return al.remove(0);
     }
 
-    public void quitarElemento(int i) {
-        al.remove(i);
+    /**
+     * Quita un elemento en la posicion i
+     * @param i Indice de elemento que se desea borrar
+     */
+
+    public T quitarElemento(int i) {
+        return al.remove(i);
 
     }
 

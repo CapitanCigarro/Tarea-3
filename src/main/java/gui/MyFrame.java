@@ -13,6 +13,7 @@ public class MyFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Maquina Expendedora");
         this.setVisible(true);
+        this.addMouseListener(principal);
 
         this.add(principal);
 

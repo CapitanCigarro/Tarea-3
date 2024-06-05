@@ -11,6 +11,7 @@ public class Expendedor {
     private Deposito<Dulce> super8;
     private Deposito<Moneda> monVu;
     private Deposito<Moneda> depMon;
+    private Deposito<Moneda> depMonExp; // Deposito de monedas de compras  exitosas
     private Producto producto;
     private int valortotal = 0;
 
@@ -25,6 +26,7 @@ public class Expendedor {
         super8 = new Deposito<Dulce>();
         monVu = new Deposito<Moneda>();
         depMon = new Deposito<Moneda>();
+        depMonExp = new Deposito<Moneda>();
 
         for (int j = 0; j < i; j++) {
             coca.addElemento(new CocaCola(j));
@@ -54,8 +56,10 @@ public class Expendedor {
 
         }
 
+        
+
         if(this.valortotal >= seleccion.getPrecio()) {
-           this.valortotal -= seleccion.getPrecio();
+
             switch (seleccion) {
                 case COCACOLA:
                     b = this.coca.getElemento();
@@ -79,13 +83,15 @@ public class Expendedor {
 
             }
 
+            if (b == null) {
+                throw new NoHayProductoException("No hay producto");
+
+            }
+
+            this.valortotal -= seleccion.getPrecio();
+            
         } else {
             throw new PagoInsuficienteException("Pago Insuficiente");
-
-        }
-
-        if(b == null) {
-            throw new NoHayProductoException("No hay producto");
 
         }
 
@@ -105,6 +111,10 @@ public class Expendedor {
         for (int i = 0; i < this.depMon.getSize(); i++) {
             Moneda m = this.depMon.verElemento(i);
             if (m.getValor() >= this.valortotal) {
+                for(int k = 0; k < (m.getValor() - this.valortotal) / 100; k++) {
+                    depMonExp.addElemento(new Moneda100());
+
+                }
                 depMon.quitarElemento(i);
                 for (int j = 0; j < this.valortotal / 100; j++) {
                     this.monVu.addElemento(new Moneda100());
@@ -161,8 +171,8 @@ public class Expendedor {
 
     }
 
-    public void rellenar() {
-        boolean coca, sprite, fanta, snickers, super8;
+    public boolean rellenar() {
+        boolean coca, sprite, fanta, snickers, super8, rellenado = false;
         coca = this.coca.isEmpty();
         sprite = this.sprite.isEmpty();
         fanta = this.fanta.isEmpty();
@@ -172,30 +182,37 @@ public class Expendedor {
         for(int i = 0; i < 5; i++) {
             if(coca) {
                 this.coca.addElemento(new CocaCola(i));
+                rellenado = true;
 
             }
 
             if(sprite) {
                 this.sprite.addElemento(new Sprite(i));
+                rellenado = true;
 
             }
 
             if(fanta) {
                 this.fanta.addElemento(new Fanta(i));
+                rellenado = true;
 
             }
 
             if(snickers) {
                 this.snickers.addElemento(new Snickers(i));
+                rellenado = true;
 
             }
 
             if(super8) {
                 this.super8.addElemento(new Super8(i));
+                rellenado = true;
 
             }
 
         }
+
+        return rellenado;
 
     }
     public Deposito<Bebida> getCoca() {

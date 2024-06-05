@@ -10,7 +10,6 @@ public class PanelExpendedor extends JPanel {
     private Expendedor exp;
     private JLabel dinero;
     private JLabel mensaje;
-    private JButton expendedor;
 
     private PanelDeposito panelCoca;
     private PanelDeposito panelFanta;
@@ -25,7 +24,6 @@ public class PanelExpendedor extends JPanel {
         this.exp = exp;
         setLayout(null);
         iniciarTextos();
-        iniciarBotones();
         iniciarPaneles(); ///TODO
 
     }
@@ -57,8 +55,8 @@ public class PanelExpendedor extends JPanel {
         this.mensaje.setForeground(Color.WHITE);
         this.dinero = new JLabel();
         this.dinero.setText("Dinero = 0");
-        this.dinero.setForeground(Color.BLACK);
-        this.dinero.setBounds(100, 0, 100, 100);
+        this.dinero.setForeground(Color.white);
+        this.dinero.setBounds(100, 400, 100, 100);
         this.add(dinero);
         this.add(mensaje);
 
@@ -74,22 +72,17 @@ public class PanelExpendedor extends JPanel {
 
     }
 
-    public void iniciarBotones() {
-        ImageIcon imagen = new  ImageIcon("Expendedor.png");        
-        this.expendedor = new JButton(); 
-        this.expendedor.setBounds(200, 100, 300, 500);
-        this.expendedor.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(expendedor.getWidth(), expendedor.getHeight(), Image.SCALE_SMOOTH)));
-        this.expendedor.setBackground(Color.DARK_GRAY);
-        this.add(this.expendedor);
-
-    }
-
     /**
      * Actualiza visuales
      */
 
     public void actualizar() {
         this.dinero.setText("Dinero = " + exp.getValorTotal());
+        this.panelCoca.reajustLabesl();
+        this.panelFanta.reajustLabesl();
+        this.panelSnickers.reajustLabesl();
+        this.panelSprite.reajustLabesl();
+        this.panelSuper8.reajustLabesl();
 
     }
 
@@ -114,6 +107,16 @@ public class PanelExpendedor extends JPanel {
         this.add(panelFanta);
         this.add(panelSnickers);
         this.add(panelSuper8);
+    }
+
+    public void rellenar() {
+        if(exp.rellenar()) {
+            this.mensaje.setText("Depositos vacios rellenados");
+            this.actualizar();
+
+        }
+
+
     }
         
 }

@@ -38,7 +38,13 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        int x = e.getX();
+        if(x <= 600) {
+            exp.rellenar();
+
+        }
         repaint();
+
     }
 
     @Override

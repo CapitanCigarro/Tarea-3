@@ -26,6 +26,17 @@ public class PanelDeposito extends JPanel {
         }
     }
 
+    public void reajustLabesl() {
+        this.removeAll();
+        for(Object prod : depo.getLista()) {
+            this.add(new LabelFoto((Producto) prod, depo, fileName));
+
+        }
+
+        this.repaint();
+ 
+    }
+
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);

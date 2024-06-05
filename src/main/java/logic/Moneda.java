@@ -5,7 +5,13 @@ package main.java.logic;
  * @author Benjamin Molina
 */
 public abstract class Moneda implements Comparable<Moneda> {
-    public Moneda() {}
+    private int serie;
+    private static int monedasExistentes = 0;
+    public Moneda() {
+        this.serie = monedasExistentes;
+        ++monedasExistentes;
+
+    }
     public Moneda getSerie() {
         return this;
 
