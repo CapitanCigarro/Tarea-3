@@ -21,11 +21,11 @@ public class LabelFoto extends JLabel {
         try {
             Moneda m = (Moneda) prod;
             JLabel serie = new JLabel();
-            serie.setText(String.valueOf(m.getSerie()));
-            serie.setForeground(Color.white);
+            this.setForeground(Color.white);
+            this.setText(String.valueOf(m.getSerie()));
+            this.setHorizontalTextPosition(JLabel.CENTER);
+            this.setVerticalTextPosition(JLabel.CENTER);
             this.add(serie);
-            this.setLayout(null);
-            
 
         } catch (Exception e) {
             

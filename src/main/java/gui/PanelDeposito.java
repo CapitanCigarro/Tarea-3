@@ -29,7 +29,7 @@ public class PanelDeposito extends JPanel {
     public void reajustLabesl() {
         this.removeAll();
         for(Object prod : depo.getLista()) {
-            this.add(new LabelFoto((Producto) prod, depo, fileName));
+            this.add(new LabelFoto(prod, depo, fileName));
 
         }
 
