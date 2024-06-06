@@ -1,4 +1,4 @@
-package main.java.gui.labels;
+package main.java.gui;
 
 import main.java.logic.Deposito;
 import main.java.logic.Moneda;

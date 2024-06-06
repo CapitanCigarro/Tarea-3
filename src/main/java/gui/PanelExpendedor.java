@@ -117,6 +117,8 @@ public class PanelExpendedor extends JPanel {
 
     }
 
+
+
     public void rellenar() {
         if(exp.rellenar()) {
             this.mensaje.setText("Depositos vacios rellenados");

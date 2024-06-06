@@ -1,6 +1,5 @@
 package main.java.gui;
 
-import main.java.gui.labels.LabelFoto;
 import main.java.logic.Deposito;
 import main.java.logic.Producto;
 
