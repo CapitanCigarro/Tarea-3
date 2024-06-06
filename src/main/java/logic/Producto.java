@@ -13,7 +13,7 @@ public abstract class Producto {
     /**Crea un producto con el numero de serie especificado.
      * @param serie Numero de serie de producto
     */
-    public Producto(int serie) {
+    public Producto() {
         this.serie = numProd;
         ++numProd;
 

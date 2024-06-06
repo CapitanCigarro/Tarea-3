@@ -8,8 +8,8 @@ public class Sprite extends Bebida {
     /**Crea una bebida Sprite.
      * @param serie Numero de serie del producto.
      */
-    public Sprite(int serie) {
-        super(serie);
+    public Sprite() {
+        super();
     }
 
     public String consumir() {

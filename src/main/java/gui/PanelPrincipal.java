@@ -16,7 +16,6 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
     public PanelPrincipal(){
         expendedor = new Expendedor(5);
-        expendedor = new Expendedor(5);
         exp = new PanelExpendedor(expendedor);
         com = new PanelComprador(expendedor, exp);
 

@@ -8,8 +8,8 @@ public class Snickers extends Dulce {
     /**Crea un snickers con el numero de serie especificado
      * @param serie numero de serie a asignar al snicker
      */
-    public Snickers(int serie) {
-        super(serie);
+    public Snickers() {
+        super();
 
     }
 

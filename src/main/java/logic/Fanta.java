@@ -4,8 +4,8 @@ package main.java.logic;
  * @author Nícholas García
 */
 public class Fanta extends Bebida {
-    public Fanta(int serie) {
-        super(serie);
+    public Fanta() {
+        super();
 
     }
 

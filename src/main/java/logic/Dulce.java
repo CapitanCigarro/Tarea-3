@@ -5,7 +5,7 @@ package main.java.logic;
  * @author Nícholas García
  */
 public abstract class Dulce extends Producto {
-    public Dulce(int serie) {
-        super(serie);
+    public Dulce() {
+        super();
     }
 }

@@ -29,13 +29,30 @@ public class Expendedor {
         depMonExp = new Deposito<Moneda>();
 
         for (int j = 0; j < i; j++) {
-            coca.addElemento(new CocaCola(j));
-            sprite.addElemento(new Sprite(j));
-            fanta.addElemento(new Fanta(j));
-            snickers.addElemento(new Snickers(j));
-            super8.addElemento(new Super8(j));
+            coca.addElemento(new CocaCola());
 
         }
+
+        for (int j = 0; j < i; j++) {
+            sprite.addElemento(new Sprite());
+
+        }
+
+        for (int j = 0; j < i; j++) {
+            fanta.addElemento(new Fanta());
+
+        }
+
+        for (int j = 0; j < i; j++) {
+            snickers.addElemento(new Snickers());
+
+        }
+
+        for (int j = 0; j < i; j++) {
+            super8.addElemento(new Super8());
+
+        }
+
     }
     /**Intenta comprar el producto especificado con la moneda especificada, y añade 
      * monedas de 100 y las sobrantes del deposito de monedas equivalentes al 
@@ -119,7 +136,7 @@ public class Expendedor {
                     diff = m.getValor() / 100;
 
                 }
-                
+
                 while(true) {
                     if(diff == 0) {break;}
                     if(diff >=5) {
@@ -227,31 +244,31 @@ public class Expendedor {
 
         for(int i = 0; i < 5; i++) {
             if(coca) {
-                this.coca.addElemento(new CocaCola(i));
+                this.coca.addElemento(new CocaCola());
                 rellenado = true;
 
             }
 
             if(sprite) {
-                this.sprite.addElemento(new Sprite(i));
+                this.sprite.addElemento(new Sprite());
                 rellenado = true;
 
             }
 
             if(fanta) {
-                this.fanta.addElemento(new Fanta(i));
+                this.fanta.addElemento(new Fanta());
                 rellenado = true;
 
             }
 
             if(snickers) {
-                this.snickers.addElemento(new Snickers(i));
+                this.snickers.addElemento(new Snickers());
                 rellenado = true;
 
             }
 
             if(super8) {
-                this.super8.addElemento(new Super8(i));
+                this.super8.addElemento(new Super8());
                 rellenado = true;
 
             }
