@@ -16,6 +16,7 @@ public class PanelExpendedor extends JPanel {
     private PanelDeposito panelSprite;
     private PanelDeposito panelSnickers;
     private PanelDeposito panelSuper8;
+    private PanelDeposito panelMonedas;
 
     public PanelExpendedor(Expendedor exp){
         this.setBounds(0,0,600,800);
@@ -38,6 +39,7 @@ public class PanelExpendedor extends JPanel {
      */
     public void añadirMoneda(Moneda m) {
         this.exp.addMoneda(m);
+        this.actualizar();
 
     }
 
@@ -83,6 +85,7 @@ public class PanelExpendedor extends JPanel {
         this.panelSnickers.reajustLabesl();
         this.panelSprite.reajustLabesl();
         this.panelSuper8.reajustLabesl();
+        this.panelMonedas.reajustLabesl();
 
     }
 
@@ -102,11 +105,16 @@ public class PanelExpendedor extends JPanel {
         panelSuper8 = new PanelDeposito(exp.getSuper8(),"src\\main\\resources\\Super81.png");
         panelSuper8.setBounds(50,260,500,60);
 
+        panelMonedas = new PanelDepositoMonedas(exp.getDepMon(),"src\\main\\resources\\");
+        panelMonedas.setBounds(50, 320, 500, 60);
+
         this.add(panelCoca);
         this.add(panelSprite);
         this.add(panelFanta);
         this.add(panelSnickers);
         this.add(panelSuper8);
+        this.add(panelMonedas);
+
     }
 
     public void rellenar() {
