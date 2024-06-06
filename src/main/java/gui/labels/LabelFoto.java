@@ -17,19 +17,18 @@ public class LabelFoto extends JLabel {
         this.prod = p;
         this.depo = argDepo;
         this.setIcon(new ImageIcon(fileName));
+        this.setForeground(Color.white);
+        this.setHorizontalTextPosition(JLabel.CENTER);
+        this.setVerticalTextPosition(JLabel.CENTER);
 
-        try {
+        if (prod.getClass().getName().contains("Moneda")){
             Moneda m = (Moneda) prod;
-            JLabel serie = new JLabel();
-            this.setForeground(Color.white);
             this.setText(String.valueOf(m.getSerie()));
-            this.setHorizontalTextPosition(JLabel.CENTER);
-            this.setVerticalTextPosition(JLabel.CENTER);
-            this.add(serie);
 
-        } catch (Exception e) {
-            
-        }                      
+        }else{
+            Producto prodCast = (Producto) prod;
+            this.setText(String.valueOf(prodCast.getSerie()));
+        }
 
     }
 
