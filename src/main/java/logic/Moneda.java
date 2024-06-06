@@ -12,8 +12,8 @@ public abstract class Moneda implements Comparable<Moneda> {
         ++monedasExistentes;
 
     }
-    public Moneda getSerie() {
-        return this;
+    public int getSerie() {
+        return this.serie;
 
 
     }

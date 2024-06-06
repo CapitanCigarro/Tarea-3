@@ -4,9 +4,10 @@ import main.java.gui.labels.LabelFoto;
 import main.java.logic.*;
 
 public class PanelDepositoMonedas extends PanelDeposito{
+    private String originalFileName;
     public PanelDepositoMonedas(Deposito depo, String fileName) {
         super(depo, fileName);
-        addLabels();
+        originalFileName = this.fileName;
 
     }
 
@@ -40,20 +41,22 @@ public class PanelDepositoMonedas extends PanelDeposito{
         this.removeAll();
         for(Object prod : depo.getLista()) {
             Moneda m = (Moneda) prod;
+
             if(m.getClass() == Moneda100.class) {
-                this.fileName += "Moneda100";
+                this.fileName = originalFileName + "Moneda100 - 1.png";
 
             }
 
             if (m.getClass() == Moneda500.class) {
-                this.fileName += "Moneda500";
+                this.fileName = originalFileName + "Moneda500 - 1.png";
 
             }
 
             if(m.getClass() == Moneda1000.class) {
-                this.fileName += "Moneda1000";
+                this.fileName = originalFileName + "Moneda1000 - 1.png";
 
             }
+            
             this.add(new LabelFoto(m, depo, this.fileName));
 
         }

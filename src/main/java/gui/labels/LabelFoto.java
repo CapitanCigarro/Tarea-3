@@ -1,6 +1,7 @@
 package main.java.gui.labels;
 
 import main.java.logic.Deposito;
+import main.java.logic.Moneda;
 import main.java.logic.Producto;
 
 import javax.swing.*;
@@ -16,6 +17,20 @@ public class LabelFoto extends JLabel {
         this.prod = p;
         this.depo = argDepo;
         this.setIcon(new ImageIcon(fileName));
+
+        try {
+            Moneda m = (Moneda) prod;
+            JLabel serie = new JLabel();
+            serie.setText(String.valueOf(m.getSerie()));
+            serie.setForeground(Color.white);
+            this.add(serie);
+            this.setLayout(null);
+            
+
+        } catch (Exception e) {
+            
+        }
+
     }
 
     @Override
