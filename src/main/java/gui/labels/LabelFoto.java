@@ -29,7 +29,7 @@ public class LabelFoto extends JLabel {
 
         } catch (Exception e) {
             
-        }
+        }                      
 
     }
 

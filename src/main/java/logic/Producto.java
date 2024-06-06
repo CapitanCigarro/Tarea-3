@@ -6,6 +6,7 @@ package main.java.logic;
 */
 public abstract class Producto {
     private int serie;
+    public static int numProd = 0;
 
     private int  x,y;
 
@@ -13,7 +14,8 @@ public abstract class Producto {
      * @param serie Numero de serie de producto
     */
     public Producto(int serie) {
-        this.serie = serie;
+        this.serie = numProd;
+        ++numProd;
 
     }
 
